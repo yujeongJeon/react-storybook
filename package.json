@@ -1,0 +1,42 @@
+{
+  "name": "react-storybook",
+  "version": "1.0.0",
+  "description": "private web for importing chatbot api",
+  "main": "index.js",
+  "dependencies": {
+    "babel-loader": "^8.0.6",
+    "path": "^0.12.7",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "@storybook/addon-actions": "^5.2.8",
+    "@storybook/addon-docs": "^5.2.8",
+    "@storybook/addon-knobs": "^5.2.8",
+    "@storybook/react": "^5.2.8",
+    "css-loader": "^1.0.0",
+    "prop-types": "^15.7.2",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "scripts": {
+    "test": "test",
+    "storybook": "start-storybook"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yujeongJeon/react-storybook.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yujeongJeon/react-storybook/issues"
+  },
+  "homepage": "https://github.com/yujeongJeon/react-storybook#readme"
+}

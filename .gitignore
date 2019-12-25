@@ -1,0 +1,12 @@
+.vscode
+./node_modules
+./dist
+*.log
+node_modules/
+dist
+dist/*
+public/assets/*
+npm-debug.log
+yarn.lock
+package-lock.json
+src/server/config/env/*
