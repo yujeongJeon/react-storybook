@@ -1,5 +1,5 @@
 import React from 'react';
-import Hello from './Hello';
+import Hello from '../Hello';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 

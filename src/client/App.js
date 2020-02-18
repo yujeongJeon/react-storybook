@@ -1,12 +1,23 @@
-import React, { Component} from "react";
+import React, { Component, Suspense} from "react";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import "./App.css";
 
-class App extends Component{
-  render(){
+const Home = React.lazy(_ => import('./components/templates/Home'));
+
+class App extends Component {
+  constructor (props) {
+    super (props);
+  }
+
+  render () {
     return(
-      <div className="App">
-        <h1> Hello, World! </h1>
-      </div>
+      <Router>
+        <Suspense fallback={ "Loading" }>
+          <Switch>
+            <Route path="/" name="Home" render={ props => <Home {...props} /> } />
+          </Switch>
+        </Suspense>
+      </Router>
     );
   }
 }
