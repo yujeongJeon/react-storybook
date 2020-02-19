@@ -2,7 +2,7 @@ import React, { Component, Suspense} from "react";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import "./App.css";
 
-const Home = React.lazy(_ => import('./components/templates/Home'));
+const Home = React.lazy(_ => import('./components/templates/Home/Home'));
 
 class App extends Component {
   constructor (props) {
