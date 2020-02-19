@@ -83,7 +83,7 @@ module.exports = (env, options) => {
           removeAttributeQuotes: true
         },
         template: resolve('/public/index.html'),
-        //favicon: resolve('/public/lotte_logo.png')
+        favicon: resolve('/public/favicon.png')
       })
     ];
   } else {
