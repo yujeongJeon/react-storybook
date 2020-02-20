@@ -1,12 +1,16 @@
 import "./Home.style.css";
 
 import React from "react";
-import { Header } from "../../organisms";
+import { Container } from "reactstrap";
+import { Header, Intro } from "../../organisms";
 
 const Home = _ => {
   return (
     <>
       <Header />
+      <Container fluid>
+        <Intro />
+      </Container>
     </>
   );
 };

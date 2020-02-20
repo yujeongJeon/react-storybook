@@ -25,10 +25,24 @@ li {
 
 .nav li.nav-item {
     float:left;
-    margin-right: 27px;
+    margin-right: 32px;
 }
 
 .nav li.nav-item:hover,
 .nav li.nav-item:active {
-    color: rgba(0,0,0, .75);
+    color: rgba(0,0,0, .75) !important;
+}
+
+iframe {
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 3px 4px 23px 0 rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+}
+
+.d-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
