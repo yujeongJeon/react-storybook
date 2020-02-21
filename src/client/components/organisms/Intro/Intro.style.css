@@ -1,10 +1,22 @@
 .row-filled {
   height: calc(100vh - 75px);
   max-height: 680px;
+  margin-top: 75px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .row-filled {
+    margin-top: 0;
+  }
 }
 
 .intro .title {
   font-size: 300%;
   font-weight: 100;
   white-space: pre-wrap;
+}
+
+.chatbot iframe.chat-iframe {
+  min-height: 580px;
 }
