@@ -18,9 +18,11 @@
     bottom: 0;
     right: 0;
     left: 0;
+    height: auto;
   }
 }
 
 .header .logo {
-  height: 75px;
+  width: 256px;
+  /* height: 75px; */
 }

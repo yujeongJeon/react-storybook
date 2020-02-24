@@ -3,6 +3,7 @@ import React from 'react';
 import { Row, Col } from 'reactstrap';
 
 import intro from '../../../assets/images/intro.png';
+import profile from '../../../assets/images/tempProfile.jpg';
 
 import * as uuidv4 from "uuid/v4";
 
@@ -11,7 +12,10 @@ const Intro = props => {
 
   return (
     <Row className="py-3 row-filled intro" noGutters>
-      <Col sm="6" className="d-flex-center title">
+      <Col sm="6" className="d-flex-end title">
+        <div className="intro-profile mr-5">
+          <img src={profile} width="136" />
+        </div>
         <img src={intro} width="380" />
       </Col>
       <Col sm="6" className="d-flex-center chatbot">

@@ -1,13 +1,13 @@
 .row-filled {
   height: calc(100vh - 75px);
   max-height: 680px;
-  margin-top: 75px;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
 }
 
 @media (max-width: 768px) {
   .row-filled {
-    margin-top: 0;
+    height: auto;
+    max-height: fit-content;
   }
 }
 
@@ -19,4 +19,10 @@
 
 .chatbot iframe.chat-iframe {
   min-height: 580px;
+}
+
+.intro .intro-profile {
+  width: 136px;
+  font-size: 1rem;
+  text-align: center;
 }
