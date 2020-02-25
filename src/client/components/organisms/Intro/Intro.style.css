@@ -15,14 +15,18 @@
   font-size: 300%;
   font-weight: 100;
   white-space: pre-wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .chatbot iframe.chat-iframe {
   min-height: 580px;
 }
 
-.intro .intro-profile {
-  width: 136px;
-  font-size: 1rem;
-  text-align: center;
+@media (min-width: 576px)
+{
+  .intro .title {
+    justify-content: flex-end;
+  }
 }
