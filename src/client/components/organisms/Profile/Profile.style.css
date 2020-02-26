@@ -36,3 +36,11 @@
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+
+@media (max-width: 768px)
+{
+  .profile-btn {
+    font-size: .85rem;
+    padding: .375rem .25rem;
+  }
+}

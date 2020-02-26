@@ -4,13 +4,6 @@
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
 }
 
-@media (max-width: 768px) {
-  .row-filled {
-    height: auto;
-    max-height: fit-content;
-  }
-}
-
 .intro .title {
   font-size: 300%;
   font-weight: 100;
@@ -18,6 +11,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.title .img-intro-title {
+  max-width: 380px;
+  /* opacity: 0;
+  transform: translateY(35px); */
 }
 
 .chatbot iframe.chat-iframe {
@@ -28,5 +27,17 @@
 {
   .intro .title {
     justify-content: flex-end;
+  }
+}
+
+@media (max-width: 768px) {
+  .row-filled {
+    height: auto;
+    max-height: fit-content;
+  }
+
+  .title .img-intro-title {
+    max-width: 280px !important;
+    width: 70%;
   }
 }

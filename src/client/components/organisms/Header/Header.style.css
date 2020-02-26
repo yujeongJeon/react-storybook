@@ -11,6 +11,10 @@
   right: 0;
 }
 
+.header .logo {
+  width: 256px;
+}
+
 @media (max-width: 768px) {
   .header {
     position: relative !important;
@@ -20,9 +24,8 @@
     left: 0;
     height: auto;
   }
-}
 
-.header .logo {
-  width: 256px;
-  /* height: 75px; */
+  .header .logo {
+    width: 156px;
+  }
 }

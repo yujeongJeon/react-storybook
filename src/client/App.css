@@ -110,3 +110,43 @@ iframe {
   font-size: 2rem;
   font-weight: 100;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.fadeUp {
+  animation-name: fadeUp;
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+.animated {
+  animation-duration: 1s;
+}
+
+.animated.fast {
+  animation-duration: 0.5s;
+}
+
+.animated.infinite {
+  animation-iteration-count: infinite;
+}

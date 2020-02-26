@@ -53,12 +53,12 @@ const Profile = _ => {
             <hr className="line"/>
             <CardImg width="138px" src={profile} alt="Card image cap" />
             <CardSubtitle className="my-3">Yujeong, Jeon</CardSubtitle>
-            <CardText>
+            <CardText tag="div">
               <Row>
                 <Col sm="12" className="mb-2">1994.09.02.</Col>
               </Row>
             </CardText>
-            <CardText>
+            <CardText tag="div">
               <Row>
                 {
                   titles.map((title, idx) => {
