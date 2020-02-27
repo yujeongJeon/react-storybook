@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useAnimation = (f, s) => {
+const useAnimation = (f, s, v) => {
   let rafId = void 0;
 
   const [done, setDone] = useState(false);
@@ -8,11 +8,11 @@ const useAnimation = (f, s) => {
   useEffect(_ => {
     if (window.requestAnimationFrame) {
       const render = _ => {
-        f();
+        v = f(v);
 
         rafId = window.requestAnimationFrame(render); 
 
-        if (s()) {
+        if (s(v)) {
           setDone(true);
           cancelAnimationFrame(rafId);
         }

@@ -17,53 +17,52 @@ const Intro = props => {
   const randomUser = uuidv4();
   const imgRef = useRef();
 
-  const [yPos, setyPos] = useState(35);
-  const [opacity, setOpacity] = useState(0);
+  //const [yPos, setyPos] = useState(35);
+  //const [opacity, setOpacity] = useState(0);
 
-  const curPos = useRef(yPos);
-  const curOpacity = useRef(opacity);
+  //const curPos = useRef(yPos);
+  //const curOpacity = useRef(opacity);
 
-  useEffect(_ => {
-    curPos.current = yPos;
-  }, [yPos]);
+  // useEffect(_ => {
+  //   curPos.current = yPos;
+  // }, [yPos]);
 
-  useEffect(_ => {
-    curOpacity.current = opacity;
-  }, [opacity]);
+  // useEffect(_ => {
+  //   curOpacity.current = opacity;
+  // }, [opacity]);
 
-  const animationFunc = _ => {
+  const animationFunc = yPos => {
     let style = imgRef.current.style;
 
-    style.transform = `translateY(${curPos.current}px)`;
-
-    setyPos(prev => prev-1); 
+    style.transform = `translateY(${yPos}px)`;
+    return --yPos;
+    //setyPos(prev => prev-1); 
   }
 
-  const stopFunc = _ => {
-    if (curPos.current === 0) {
+  const stopFunc = yPos => {
+    if (yPos === 0) {
       return true;
     }
     return false;
   }
 
-  const opacityFunc = _ => {
+  const opacityFunc = opacity => {
     let style = imgRef.current.style;
 
-    style.opacity = curOpacity.current;
-
-    setOpacity(prev => prev + 0.1);
+    style.opacity = opacity;
+    return opacity+0.1
+    //setOpacity(prev => prev + 0.1);
   }
 
-  const stopOpacityFunc = _ => {
-    if (curOpacity.current >= 1) {
+  const stopOpacityFunc = opacity => {
+    if (opacity >= 1) {
       return true;
     }
     return false;
   }
 
-  //const { done: doneTransform } = useAnimation(animationFunc, stopFunc);
-  //const { done: doneOpacity } = useAnimation(opacityFunc, stopOpacityFunc);
-
+  //const { done: doneTransform } = useAnimation(animationFunc, stopFunc, 35);
+  //const { done: doneOpacity } = useAnimation(opacityFunc, stopOpacityFunc, 0);
   return (
     <Row className="py-3 row-filled intro" noGutters>
       <Col sm="6" className="title">
