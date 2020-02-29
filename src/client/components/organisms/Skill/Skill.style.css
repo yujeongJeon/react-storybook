@@ -1,0 +1,33 @@
+.skill {
+  background: rgba(0,0,0,.03);
+}
+
+.skill .col-sm-12 {
+  padding: 18px 0;
+}
+
+.skill .title p {
+  font-size: 24px;
+  margin-bottom: 0;
+  padding: 0 15px;
+  text-align: center;
+}
+
+.skill .title .line {
+  width: 55px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.skill .title span.en {
+  font-size: 14px;
+  margin-left: 10px;
+  color: #57585c;
+}
+
+@media (max-width: 768px) {
+  .skill .title span.en {
+    display: block;
+    margin: 5px 0 0;
+  }
+}

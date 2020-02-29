@@ -1,3 +1,4 @@
 import { NavGroup } from "./NavGroup";
+import TabGroup from "./TabGroup";
 
-export { NavGroup };
+export { NavGroup, TabGroup };

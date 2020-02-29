@@ -2,7 +2,7 @@ import "./Home.style.css";
 
 import React from "react";
 import { Container } from "reactstrap";
-import { Header, Intro, Profile } from "../../organisms";
+import { Header, Intro, Profile, Skill } from "../../organisms";
 
 const Home = _ => {
   return (
@@ -11,6 +11,7 @@ const Home = _ => {
       <Container fluid className="wrapper">
         <Intro />
         <Profile />
+        <Skill />
       </Container>
     </>
   );
