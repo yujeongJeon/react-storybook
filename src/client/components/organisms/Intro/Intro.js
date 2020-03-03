@@ -1,5 +1,5 @@
 import './Intro.style.css';
-import React, { useRef, useEffect, useState, memo } from 'react';
+import React, { useRef, memo } from 'react';
 import { Row, Col } from 'reactstrap';
 
 import intro from '../../../assets/images/intro.png';
@@ -13,30 +13,17 @@ const ChatFrame = memo(user => {
   )
 })
 
+let count = 0;
+
 const Intro = props => {
   const randomUser = uuidv4();
   const imgRef = useRef();
-
-  //const [yPos, setyPos] = useState(35);
-  //const [opacity, setOpacity] = useState(0);
-
-  //const curPos = useRef(yPos);
-  //const curOpacity = useRef(opacity);
-
-  // useEffect(_ => {
-  //   curPos.current = yPos;
-  // }, [yPos]);
-
-  // useEffect(_ => {
-  //   curOpacity.current = opacity;
-  // }, [opacity]);
 
   const animationFunc = yPos => {
     let style = imgRef.current.style;
 
     style.transform = `translateY(${yPos}px)`;
-    return --yPos;
-    //setyPos(prev => prev-1); 
+    return --yPos; 
   }
 
   const stopFunc = yPos => {
@@ -51,7 +38,6 @@ const Intro = props => {
 
     style.opacity = opacity;
     return opacity+0.1
-    //setOpacity(prev => prev + 0.1);
   }
 
   const stopOpacityFunc = opacity => {
@@ -61,8 +47,11 @@ const Intro = props => {
     return false;
   }
 
-  //const { done: doneTransform } = useAnimation(animationFunc, stopFunc, 35);
-  //const { done: doneOpacity } = useAnimation(opacityFunc, stopOpacityFunc, 0);
+  // const { done: doneTransform } = useAnimation(animationFunc, stopFunc, 35);
+  // const { done: doneOpacity } = useAnimation(opacityFunc, stopOpacityFunc, 0);
+  console.log("render ", count);
+  count++;
+  // animated fadeUp
   return (
     <Row className="py-3 row-filled intro" noGutters>
       <Col sm="6" className="title">

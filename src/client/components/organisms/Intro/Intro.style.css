@@ -19,10 +19,6 @@
   transform: translateY(35px); */
 }
 
-.chatbot iframe.chat-iframe {
-  min-height: 580px;
-}
-
 @media (min-width: 576px)
 {
   .intro .title {
@@ -34,6 +30,10 @@
   .row-filled {
     height: auto;
     max-height: fit-content;
+  }
+
+  .chatbot iframe.chat-iframe {
+    height: 580px;
   }
 
   .title .img-intro-title {
