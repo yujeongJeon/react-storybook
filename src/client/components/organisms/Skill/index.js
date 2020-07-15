@@ -2,9 +2,21 @@ import "./Skill.style.css";
 
 import React from "react";
 import { TabGroup } from "../../molecules";
-import { Row, Col } from "reactstrap";
+import { Row, Col,  } from "reactstrap";
+import { ListGroup } from "../../molecules";
 
 const Skill = _ => {
+  const frameworks = [
+    {
+      title: 'React',
+      description: '2018.10. ~ 2020.07.'
+    },
+    {
+      title: 'Angular',
+      description: '2020.05. ~ 2020.07.'
+    }
+  ];
+
   return (
     <Row className="skill" noGutters>
       <Col sm="12">
@@ -24,7 +36,7 @@ const Skill = _ => {
             {
               tab: "frameworks",
               name: "Frameworks",
-              component: <>프레임워크</>
+              component: <ListGroup contents={frameworks} />
             },
             {
               tab: "databases",
