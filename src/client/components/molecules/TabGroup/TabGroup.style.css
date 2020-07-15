@@ -1,0 +1,26 @@
+.tab-group {
+  padding: 0 15px;
+}
+
+.tab-group .col-sm-12.col-title {
+  padding-bottom: 0;
+}
+
+.nav-vertical-half a.nav-link {
+  border: 0;
+  border-radius: 10px;
+  margin-bottom: 18px;
+}
+
+.nav-vertical-half a:hover,
+.nav-vertical-half a:active {
+  background: #fff;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-vertical-half li.nav-item {
+    margin-right: 0;
+    text-align: center;
+  }
+}

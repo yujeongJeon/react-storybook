@@ -1,3 +1,6 @@
-import { Header } from './Header'
+import { Header } from "./Header";
+import { Intro } from "./Intro";
+import Profile from './Profile';
+import Skill from './Skill';
 
-export { Header };
+export { Header, Intro, Profile, Skill };

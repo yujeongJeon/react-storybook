@@ -1,0 +1,46 @@
+.profile {
+  width: 100%;
+  height: calc(100vh - 75px);
+  min-height: 580px;
+  background-color: #fff;
+}
+
+.profile-card {
+  width: 100%;
+  max-width: 476px;
+  margin: 0 auto;
+  border: 0;
+  border-radius: 0;
+  box-shadow: 3px 4px 23px 0 rgba(0, 0, 0, 0.05);
+  color: #5f5f5f;
+  text-align: center;
+}
+
+.profile-card .card-img {
+  width: 138px;
+}
+
+.profile-btn {
+  font-weight: 100;
+  color: #5f5f5f;
+}
+
+.profile-btn:hover,
+.profile-btn:active {
+  text-decoration: none;
+  color: #535353;
+}
+
+.profile .line {
+  width: 55px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px)
+{
+  .profile-btn {
+    font-size: .85rem;
+    padding: .375rem .25rem;
+  }
+}

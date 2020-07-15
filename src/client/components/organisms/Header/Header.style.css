@@ -1,5 +1,31 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: #fff;
+  z-index: 10006;
+  height: 75px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.header .logo {
+  width: 256px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    position: relative !important;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: auto;
+  }
+
+  .header .logo {
+    width: 156px;
+  }
 }

@@ -1,28 +1,37 @@
-import './Header.style.css';
+import "./Header.style.css";
 
-import React from 'react';
-import logo from '../../../assets/logo.png';
+import React from "react";
+import logo from "../../../assets/juj_logo.png";
+import { NavGroup } from "../../molecules";
 
 const Header = _ => {
+  const items = [
+    {
+      href: "#",
+      title: "챗봇 만들기"
+    },
+    {
+      href: "#",
+      title: "공지사항"
+    },
+    {
+      href: "#",
+      title: "FAQ"
+    },
+    {
+      href: "#",
+      title: "로그인"
+    }
+  ]
   return (
-    <div className="header">
-      <img src={ logo } width="258" />
-      <ul className="nav">
-        <li className="nav-item">
-          <a className="nav-link" href="#">가이드</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">공지사항</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">FAQ</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">로그인</a>
-        </li>
-      </ul>
-  </div>
-  )
-}
+    <NavGroup
+    logo={ logo }
+    logoWidth="256"
+    className="header"
+    brandClassName="logo"
+    items={ items }
+    right />
+  );
+};
 
 export default Header;

@@ -1,34 +1,152 @@
-html, body {
-    font-size: 16px;
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 100;
+  src: url("./assets/fonts/noto-sans-kr-v12-latin_korean-100.woff2")
+      format("woff2"),
+    url("./assets/fonts/noto-sans-kr-v12-latin_korean-100.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 300;
+  src: url("./assets/fonts/noto-sans-kr-v12-latin_korean-300.woff2")
+      format("woff2"),
+    url("./assets/fonts/noto-sans-kr-v12-latin_korean-300.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 500;
+  src: url("./assets/fonts/noto-sans-kr-v12-latin_korean-500.woff2")
+      format("woff2"),
+    url("./assets/fonts/noto-sans-kr-v12-latin_korean-500.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 700;
+  src: url("./assets/fonts/noto-sans-kr-v12-latin_korean-700.woff2")
+      format("woff2"),
+    url("./assets/fonts/noto-sans-kr-v12-latin_korean-700.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 900;
+  src: url("./assets/fonts/noto-sans-kr-v12-latin_korean-900.woff2")
+      format("woff2"),
+    url("./assets/fonts/noto-sans-kr-v12-latin_korean-900.woff") format("woff");
+}
+
+html,
+body {
+  font-size: 16px;
+  font-family: "Noto Sans KR";
+  font-weight: 300;
 }
 
 .App {
-    margin: 1rem;
-    font-family: Arial, Helvetica, sans-serif;
+  margin: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 a {
-    color: rgba(0,0,0, .6);
-    text-decoration: none;
+  color: rgba(0, 0, 0, 0.6);
+  text-decoration: none;
 }
 
 ul {
-    margin: 0;
-    padding: 0;
-    display: inline-block;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
 }
 
 li {
-    display: list-item;
-    list-style: none;
+  display: list-item;
+  list-style: none;
 }
 
 .nav li.nav-item {
-    float:left;
-    margin-right: 27px;
+  float: left;
+  margin-right: 32px;
 }
 
 .nav li.nav-item:hover,
 .nav li.nav-item:active {
-    color: rgba(0,0,0, .75);
+  color: rgba(0, 0, 0, 0.75) !important;
+}
+
+iframe {
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 3px 4px 23px 0 rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+}
+
+.d-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.d-flex-end {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.font-lg {
+  font-size: 1rem;
+  font-weight: 100;
+}
+
+.font-xl {
+  font-size: 2rem;
+  font-weight: 100;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.fadeUp {
+  animation-name: fadeUp;
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+.animated {
+  animation-duration: 1s;
+}
+
+.animated.fast {
+  animation-duration: 0.5s;
+}
+
+.animated.infinite {
+  animation-iteration-count: infinite;
 }
