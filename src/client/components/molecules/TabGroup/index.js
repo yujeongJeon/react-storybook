@@ -32,7 +32,7 @@ const TabGroup = ({
   const showContent = _ => {
     return (
       items.map(({component, tab, ...rest}, idx) => (
-        <TabPane key={`t_${idx}`} tabId={tab} active className="animated fadeIn">
+        <TabPane key={`t_${idx}`} tabId={tab} className="animated fadeIn">
           {
             component
           }

@@ -24,7 +24,6 @@ module.exports = (env, options) => {
           loader: "babel-loader",
           options: { presets: ["@babel/env"] }
         },
-        { test: /\.tsx?$/, loader: "ts-loader" },
         {
           test: /\.css$/,
           use: ["style-loader", "css-loader"]

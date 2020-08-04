@@ -3,6 +3,7 @@ import "./Home.style.css";
 import React from "react";
 import { Container } from "reactstrap";
 import { Header, Intro, Profile, Skill } from "../../organisms";
+import Example from "../../commons/Example";
 
 const Home = _ => {
   return (
@@ -12,6 +13,7 @@ const Home = _ => {
         <Intro />
         <Profile />
         <Skill />
+        <Example />
       </Container>
     </>
   );
