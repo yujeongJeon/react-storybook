@@ -1,80 +1,47 @@
-import "./scroll.style.css";
 import React, { useState, useEffect, useRef } from "react";
 import throttle from "lodash/throttle";
+import { List, AutoSizer } from "react-virtualized";
 
 const InfiniteScroll = ({
   next,
   hasMore,
-  scrollTarget,
   onScroll,
   height,
   loader,
   dataLength,
-  children
+  children,
+  elementHeight,
+  rowRenderer,
 }) => {
   const [showLoader, setShowLoader] = useState(false);
-  //const [triggered, setTriggered] = useState(false);
   let triggered = useRef(false);
-
-  const getScrollTarget = () => {
-    if (scrollTarget instanceof HTMLElement) return scrollTarget;
-    if (typeof scrollTarget === "string")
-      return document.getElementById(scrollTarget);
-    if (scrollTarget === null)
-      console.warn("scrollTarget is null. Please add target element into DOM.");
-
-    return null;
-  };
-
-  const _scrollTarget = getScrollTarget();
-
-  const isAtBottom = (target, scrollThreshold) => {
-    const clientHeight =
-      target === document.body || target === document.documentElement
-        ? window.screen.availHeight
-        : target.clientHeight;
-
-    return (
-      target.scrollTop + clientHeight >= scrollThreshold * target.scrollHeight
-    );
-  };
 
   useEffect(() => {
     triggered.current = false;
-    //setTriggered(false);
     setShowLoader(false);
   }, [dataLength]);
 
-  /**
-   * 함수형 컴포넌트의 클로저로 인해 next, hasMore, onScroll과 같이 State를 가질 수 있는 props를 useRef로 두어 현재 값을 참조하도록 하였음
-   */
   const props = useRef({
     next,
     hasMore,
-    onScroll
+    onScroll,
   });
 
-  const scrollListener = e => {
+  const scrollListener = (e) => {
     const { next, hasMore, onScroll } = props.current;
     if (typeof onScroll === "function") {
       setTimeout(() => onScroll && onScroll(e), 0);
     }
 
-    const target =
-      height || _scrollTarget
-        ? e.target
-        : document.documentElement.scrollTop
-        ? document.documentElement
-        : document.body;
+    const { clientHeight, scrollHeight, scrollTop } = e;
 
     if (triggered.current) {
       return;
     }
 
-    const atBottom = isAtBottom(target, 1);
+    const atBottom = scrollTop + clientHeight >= scrollHeight;
 
     if (atBottom && hasMore) {
-      //setTriggered(true);
       triggered.current = true;
       setShowLoader(true);
       next && next();
@@ -85,33 +52,40 @@ const InfiniteScroll = ({
     props.current = {
       next,
       hasMore,
-      onScroll
+      onScroll,
     };
   }, [next, hasMore, onScroll]);
 
   const throttleScrollListener = throttle(scrollListener, 150);
 
-  const _infScroll = useRef();
-
-  useEffect(() => {
-    const el = height ? _infScroll.current : _scrollTarget || window;
-
-    if (el) {
-      el.addEventListener("scroll", throttleScrollListener);
-      return () => el.removeEventListener("scroll", throttleScrollListener);
-    }
-  }, []);
+  const isLoaderVisible = showLoader && hasMore;
 
   return (
-    <div
-      className="scroll_wrapper"
-      style={{ height: height || "auto" }}
-      ref={_infScroll}
-    >
-      {children}
-      {!showLoader && hasMore && loader}
-      {showLoader && hasMore && loader}
-    </div>
+    <>
+      <AutoSizer disableHeight>
+        {({ width }) => (
+          <List
+            rowCount={children.length}
+            width={width}
+            height={height}
+            rowHeight={elementHeight}
+            rowRenderer={rowRenderer}
+            overscanRowCount={5}
+            onScroll={throttleScrollListener}
+          />
+        )}
+      </AutoSizer>
+      <div
+        style={{
+          visibility: isLoaderVisible ? "visible" : "hidden",
+          position: isLoaderVisible ? "" : "absolute",
+          bottom: 0,
+          willChange: "scroll-position" // https://wit.nts-corp.com/2017/06/05/4571, but IE not supported
+        }}
+      >
+        {loader}
+      </div>
+      </>
   );
 };
 

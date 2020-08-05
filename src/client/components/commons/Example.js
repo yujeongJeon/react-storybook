@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from "react";
 import InfiniteScroll from "./InfiniteScroll";
 
-const Elem = ({ i }) => {
+const Elem = ({ i, style }) => {
   return (
     <div
       style={{
+        ...style,
         backgroundColor: "#fff",
-        height: "50px",
         border: "1px solid black",
-        margin: "10px 0",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         width: "150px",
+        margin: "10px 0",
+        height: "50px"
       }}
     >
       div-#{i}
     </div>
   );
-};
+}
 
 const Example = () => {
   const [items, setItems] = useState(() => Array.from({ length: 20 }));
@@ -34,26 +35,37 @@ const Example = () => {
   };
 
   useEffect(() => {
-    if (items.length >= 60) {
+    if (items.length >= 100) {
       setHasMore(false);
     }
   }, [items.length]);
 
+  const rowRenderer = ({index, key, style}) => <Elem key={key} i={index} style={style} />
+
   return (
     <div style={{ backgroundColor: "#fafafa" }}>
       <h3 style={{ textAlign: "center" }}>
-        onScroll과 height가 적용된 컴포넌트
+        height가 적용된 컴포넌트
       </h3>
       <InfiniteScroll
         dataLength={items.length}
         hasMore={hasMore}
         next={fetchMoreData}
-        loader={<div>loading...</div>}
+        loader={<div style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        }}>loading...</div>}
         height={400}
+        elementHeight={70} // 새로 추가
+        rowRenderer={rowRenderer}
+        children={items}
       >
-        {items.map((v, i) => (
-          <Elem key={i} i={i} />
-        ))}
+        {/* {
+          items.map((item, idx) => (
+            <Elem key={idx} i={idx} />
+          ))
+        } */}
       </InfiniteScroll>
     </div>
   );
