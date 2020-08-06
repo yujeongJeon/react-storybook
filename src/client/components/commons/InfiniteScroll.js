@@ -1,6 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useMemo } from "react";
 import throttle from "lodash/throttle";
-import { List, AutoSizer } from "react-virtualized";
+import List from "react-virtualized/dist/commonjs/List";
+import AutoSizer from "react-virtualized/dist/commonjs/AutoSizer";
+import CellMeasurer, {
+  CellMeasurerCache,
+} from "react-virtualized/dist/commonjs/CellMeasurer";
+import usePrevious from "../../helpers/usePrevious";
 
 const InfiniteScroll = ({
   next,
@@ -10,15 +15,13 @@ const InfiniteScroll = ({
   loader,
   dataLength,
   children,
-  elementHeight,
-  rowRenderer,
+  renderer,
+  minHeight = 1
 }) => {
-  const [showLoader, setShowLoader] = useState(false);
   let triggered = useRef(false);
 
   useEffect(() => {
     triggered.current = false;
-    setShowLoader(false);
   }, [dataLength]);
 
   const props = useRef({
@@ -43,7 +46,6 @@ const InfiniteScroll = ({
 
     if (atBottom && hasMore) {
       triggered.current = true;
-      setShowLoader(true);
       next && next();
     }
   };
@@ -58,34 +60,100 @@ const InfiniteScroll = ({
 
   const throttleScrollListener = throttle(scrollListener, 150);
 
-  const isLoaderVisible = showLoader && hasMore;
+  const rowRenderer = ({ parent, key, index, style }) => {
+    let content;
 
+    if (index >= children.length && hasMore) {
+      content = loader
+    } else if (index >= children.length && !hasMore) {
+      content = "";
+    } else {
+      content = renderer({
+        index,
+      })
+    }
+
+    return (
+      <CellMeasurer
+        cache={_cache}
+        columnIndex={0}
+        key={key}
+        parent={parent}
+        rowIndex={index}
+        width={_mostRecentWidth}
+      >
+        <div style={style}>
+          {content}
+        </div>
+      </CellMeasurer>
+    );
+  };
+
+  // next() 호출 시 lastElem + 3~5개를 누락하고 그 다음 요소들을 렌더링하는 문제: 컴포넌트가 rerender되면서 _cache또한 재정의됨
+  // _cache는 minHeight이 유동적일 때에만 새로 생성해줘야 함
+  let _cache = useMemo(() => new CellMeasurerCache({
+    defaultHeight: minHeight,
+    fixedWidth: true,
+  }), [minHeight])
+
+  const _list = useRef();
+  const prevLength = usePrevious(children.length);
+  let _mostRecentWidth = 0;
+  let _resizeAllFlag = useRef(false);
+
+  useEffect(() => {
+    if (_resizeAllFlag.current) {
+      _resizeAllFlag.current = false;
+      _cache.clearAll();
+      if (_list.current) {
+        _list.current.recomputeRowHeights();
+      }
+    } else if (prevLength && prevLength !== children.length) {
+      const index = prevLength;
+      _cache.clear(index, 0);
+      if (_list.current) {
+        _list.current.recomputeRowHeights(index);
+      }
+    }
+  }, [children, _resizeAllFlag]);
+
+  const _resizeAll = () => {
+    _resizeAllFlag.current = false;
+    _cache.clearAll();
+    if (_list.current) {
+      _list.current.recomputeRowHeights();
+    }
+  }
+
+  // https://github.com/bvaughn/react-virtualized/blob/master/docs/List.md
+  /**
+   * 고민 1. height는 무조건 주어져야 함 -> 어쩔 수 없음...
+   * 고민 2. loader -> rowCount + 1해서 index가 rowCount+1과 같고 데이터를 더 불러와야 할 경우에 loader 컴포넌트로 세팅
+   * 고민 3. 가변적인 height 계산은? dynamic height 게산을 위해 CellMeasurer 적용
+   */
   return (
     <>
       <AutoSizer disableHeight>
-        {({ width }) => (
-          <List
-            rowCount={children.length}
+        {({ width }) => {
+          if (_mostRecentWidth && _mostRecentWidth !== width) {
+            _resizeAllFlag.current = true;
+            setTimeout(_resizeAll, 0);
+          }
+
+          return <List
+            deferredMeasurementCache={_cache}
+            rowCount={children.length + 1}
             width={width}
             height={height}
-            rowHeight={elementHeight}
+            rowHeight={_cache.rowHeight}
             rowRenderer={rowRenderer}
             overscanRowCount={5}
             onScroll={throttleScrollListener}
+            ref={_list}
           />
-        )}
-      </AutoSizer>
-      <div
-        style={{
-          visibility: isLoaderVisible ? "visible" : "hidden",
-          position: isLoaderVisible ? "" : "absolute",
-          bottom: 0,
-          willChange: "scroll-position" // https://wit.nts-corp.com/2017/06/05/4571, but IE not supported
         }}
-      >
-        {loader}
-      </div>
-      </>
+      </AutoSizer>
+    </>
   );
 };
 
