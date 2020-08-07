@@ -92,7 +92,7 @@ const InfiniteScroll = ({
   // next() 호출 시 lastElem + 3~5개를 누락하고 그 다음 요소들을 렌더링하는 문제: 컴포넌트가 rerender되면서 _cache또한 재정의됨
   // _cache는 minHeight이 유동적일 때에만 새로 생성해줘야 함
   let _cache = useMemo(() => new CellMeasurerCache({
-    defaultHeight: minHeight,
+    minHeight: minHeight,
     fixedWidth: true,
   }), [minHeight])
 
